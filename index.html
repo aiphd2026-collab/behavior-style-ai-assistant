@@ -50,9 +50,9 @@
   <main id="report" class="page hidden"><article class="shell report">
     <header class="report-hero"><span class="brand">学生个人反馈报告</span><h1>你的行为风格观察</h1><div id="reportMeta" class="report-meta"></div></header>
     <div class="report-body">
-      <section class="type-card"><small>本次行为风格</small><h2 id="typeName"></h2><p id="summary"></p><p id="typicalBehavior"></p><div class="radar-wrap"><canvas id="radar" width="560" height="480" aria-label="四维行为风格雷达图"></canvas><div id="scoreList" class="score-list"></div></div></section>
-      <div class="report-grid"><section class="report-card"><h3>你的优势资源</h3><p id="strengths"></p></section><section class="report-card"><h3>对当前学习的帮助</h3><p id="learningHelp"></p></section><section class="report-card"><h3>合作与表达提醒</h3><p id="collaborationTip"></p></section><section class="report-card"><h3>可以继续练习</h3><p id="possibleChallenge"></p></section></div>
-      <section class="action-card"><h3>本周行动</h3><p id="weeklyAction"></p></section>
+      <section class="type-card"><small>本次行为风格</small><h2 id="typeName"></h2><p id="summary"></p><p id="overviewDetail"></p><p id="typicalBehavior"></p><div class="radar-wrap"><canvas id="radar" width="560" height="480" aria-label="四维行为风格雷达图"></canvas><div id="scoreList" class="score-list"></div></div></section>
+      <div class="report-grid"><section class="report-card"><h3>你的优势资源</h3><p id="strengths"></p><p id="strengthDetails"></p></section><section class="report-card"><h3>对当前学习的帮助</h3><p id="learningHelp"></p><p id="learningSteps"></p></section><section class="report-card"><h3>合作与表达提醒</h3><p id="collaborationTip"></p><p id="collaborationDetail"></p></section><section class="report-card"><h3>可以继续练习</h3><p id="possibleChallenge"></p><p id="challengeAdjustment"></p></section></div>
+      <section class="action-card"><h3>本周行动</h3><p id="weeklyAction"></p><p><b>本周目标：</b><span id="weeklyGoal"></span></p><p><b>行动步骤：</b><span id="weeklySteps"></span></p><p><b>完成检查：</b><span id="weeklyCheck"></span></p></section>
       <p id="boundary" class="final-note"></p>
       <button class="primary finish" onclick="location.reload()">完成</button>
     </div>
@@ -127,7 +127,7 @@
 
     function renderReport(report){
       $("reportMeta").textContent=report.studentName+" · "+report.className+" · "+report.testDate+" · 活动编号："+report.activityId;
-      ["typeName","summary","typicalBehavior","strengths","learningHelp","collaborationTip","possibleChallenge","weeklyAction","boundary"].forEach(key=>$(key).textContent=report[key]||"");
+      ["typeName","summary","overviewDetail","typicalBehavior","strengths","strengthDetails","learningHelp","learningSteps","collaborationTip","collaborationDetail","possibleChallenge","challengeAdjustment","weeklyAction","weeklyGoal","weeklySteps","weeklyCheck","boundary"].forEach(key=>$(key).textContent=report[key]||"");
       const labels=Object.keys(report.scores),values=labels.map(label=>Number(report.scores[label])),scaleMax=Math.max(10,...values);
       $("scoreList").innerHTML=labels.map(label=>`<div class="score-row"><span>${esc(label)}</span><span class="score-bar"><i style="width:${Number(report.scores[label])/scaleMax*100}%"></i></span><b>${Number(report.scores[label])}</b></div>`).join("");
       drawRadar($("radar"),values,scaleMax);
