@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <title>校本行为风格观察｜行为风格与兴趣发展AI助理</title>
+  <style>
+    :root{
+      --ink:#29323a;--muted:#65717a;--paper:#fffdf9;--line:#e7ddd2;
+      --coral:#c95f45;--coral-soft:#f9dfd5;--blue:#3e7698;--blue-soft:#dcecf6;
+      --gold:#bf8427;--gold-soft:#f8e8bd;--green:#43836c;--green-soft:#dcefe7;
+      --violet:#735b9a;--violet-soft:#e8e0f2;
+    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif;color:var(--ink);background:linear-gradient(145deg,#fde5d8 0,#f7efe6 42%,#e4f2ed 100%)}
+    button,input{font:inherit}.page{min-height:100vh;padding:clamp(12px,3vw,28px)}.shell{width:min(960px,100%);margin:auto;background:var(--paper);border:1px solid #ffffffb8;border-radius:28px;box-shadow:0 24px 70px #795b4524;overflow:hidden}
+    .hero{padding:clamp(28px,6vw,58px);background:radial-gradient(circle at 93% 12%,#ffd49d 0 6%,transparent 6.3%),linear-gradient(135deg,#b95844 0,#ce7152 52%,#e4a05c 100%);color:#fff}.brand{display:inline-flex;padding:8px 14px;border-radius:999px;background:#fff1d8;color:#794737;font-weight:900}.hero h1{font-size:clamp(2.25rem,7vw,4.5rem);line-height:1.12;margin:22px 0 14px}.hero p{font-size:clamp(1.08rem,2.5vw,1.3rem);line-height:1.8;margin:0;max-width:760px}.facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.facts span{padding:10px 14px;border-radius:13px;background:#ffffffde;color:#714536;font-weight:850}.facts span:nth-child(2){color:#315f79;background:#e8f5fb}.facts span:nth-child(3){color:#356a56;background:#e8f7ef}.facts span:nth-child(4){color:#705786;background:#f0e9f7}
+    .intro-body{padding:clamp(24px,5vw,48px)}.identity{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;padding:22px;border-radius:20px;background:linear-gradient(135deg,#fff3e8,#edf7f3);border:1px solid #e7d5c8}.identity label{display:grid;gap:8px;font-weight:850;color:#4d555b}.identity input{width:100%;padding:15px;border:1px solid #c9b9ad;border-radius:13px;background:#fff;font-size:1.05rem}.identity input:focus{outline:3px solid #f0b9a7;border-color:var(--coral)}
+    .consent{display:flex;align-items:flex-start;gap:10px;margin:18px 2px;color:var(--muted);line-height:1.65}.consent input{width:20px;height:20px;margin-top:3px;accent-color:var(--coral)}.notice{padding:16px 18px;border-radius:15px;background:#eef7f3;border-left:6px solid var(--green);line-height:1.75;color:#3c6255}.message{margin:14px 0;padding:13px 15px;border-radius:13px;background:#fff1e4;border:1px solid #ebc5a6;color:#8a4d24;font-weight:800}.hidden{display:none!important}.primary{width:100%;border:0;border-radius:14px;padding:16px 22px;background:linear-gradient(135deg,#b95742,#d47b50);color:#fff;font-weight:900;cursor:pointer;box-shadow:0 10px 24px #a64f3730}.primary:disabled{opacity:.5;cursor:not-allowed}
+    .survey-shell{padding:clamp(18px,4vw,36px)}.survey-head{padding:22px;border-radius:19px;background:linear-gradient(135deg,#fff0e5,#eaf5f1);border:1px solid #e5d3c7}.survey-head h1{margin:0;color:#813f32;font-size:clamp(1.8rem,5vw,2.6rem)}.survey-head p{margin:9px 0 0;font-size:1.08rem;font-weight:750}.activity-id{color:#995543}.progress{height:12px;margin-top:18px;border-radius:999px;background:#eadfd6;overflow:hidden}.progress i{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--coral),#d79a38,var(--green));transition:width .2s}.progress-text{text-align:right;margin-top:7px;color:var(--muted);font-weight:800}
+    #questions{display:grid;gap:18px;margin:20px 0}.question{--accent:var(--coral);--soft:var(--coral-soft);border:1px solid color-mix(in srgb,var(--accent) 42%,#fff);border-left:8px solid var(--accent);border-radius:19px;padding:20px;background:var(--soft)}.question.tone-1{--accent:var(--blue);--soft:var(--blue-soft)}.question.tone-2{--accent:var(--gold);--soft:var(--gold-soft)}.question.tone-3{--accent:var(--green);--soft:var(--green-soft)}.question.tone-4{--accent:var(--violet);--soft:var(--violet-soft)}.question-title{display:flex;align-items:flex-start;gap:12px;font-size:clamp(1.25rem,3vw,1.55rem);font-weight:900;line-height:1.55}.number{flex:0 0 38px;width:38px;height:38px;display:grid;place-items:center;border-radius:50%;background:var(--accent);color:#fff;font-size:1.05rem}.choices{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:18px}.choice{position:relative;display:flex;align-items:center;min-height:70px;padding:14px 16px;border:1px solid #ffffff;border-radius:14px;background:#fffc;cursor:pointer;font-size:1.03rem;line-height:1.5;box-shadow:0 3px 10px #5d4a3a0b}.choice input{position:absolute;opacity:0}.choice:has(input:checked){background:#fff;border-color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent);color:color-mix(in srgb,var(--accent) 80%,#20262a);font-weight:850}.choice:has(input:focus-visible){outline:3px solid #fff;outline-offset:2px}.submit-wrap{padding-top:4px}.boundary{margin:18px 2px 0;color:var(--muted);line-height:1.7;font-size:.95rem}
+    .report{background:#fffaf5}.report-hero{padding:clamp(26px,5vw,48px);background:linear-gradient(135deg,#b95844,#df9859);color:#fff}.report-hero h1{font-size:clamp(2rem,6vw,3.6rem);margin:14px 0 8px}.report-meta{font-size:1.06rem;line-height:1.7}.report-body{padding:clamp(20px,4vw,38px)}.type-card{padding:24px;border-radius:20px;background:#fff1e7;border:1px solid #e8c0ae}.type-card h2{font-size:clamp(1.8rem,5vw,2.6rem);margin:6px 0 12px;color:#873f32}.type-card p,.report-card p{font-size:1.08rem;line-height:1.8;margin:8px 0}.radar-wrap{display:grid;grid-template-columns:minmax(280px,410px) 1fr;gap:22px;align-items:center;margin-top:20px;padding:20px;border-radius:18px;background:#fff;border:1px solid #e9d7ca}.radar-wrap canvas{width:100%;height:auto}.score-list{display:grid;gap:10px}.score-row{display:grid;grid-template-columns:90px 1fr 28px;align-items:center;gap:10px;font-weight:800}.score-bar{height:11px;border-radius:999px;background:#ece6e1;overflow:hidden}.score-bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--blue),var(--coral))}.report-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.report-card{padding:21px;border-radius:18px;border:1px solid #e6ddd5;background:#fff}.report-card:nth-child(1){background:#edf7f2;border-left:6px solid var(--green)}.report-card:nth-child(2){background:#eef5fa;border-left:6px solid var(--blue)}.report-card:nth-child(3){background:#fff5db;border-left:6px solid var(--gold)}.report-card:nth-child(4){background:#f0eaf7;border-left:6px solid var(--violet)}.report-card h3{font-size:1.35rem;margin:0 0 8px}.action-card{margin-top:16px;padding:22px;border-radius:18px;background:#fbe2d6;border-left:7px solid var(--coral)}.action-card h3{margin:0;font-size:1.4rem}.action-card p{font-size:1.1rem;line-height:1.8}.final-note{margin-top:18px;padding:16px;border-radius:14px;background:#edf1ef;color:#53605b;line-height:1.7}.finish{margin-top:18px;background:#fff;color:var(--coral);border:2px solid var(--coral);box-shadow:none}
+    @media(max-width:720px){.page{padding:8px}.shell{border-radius:20px}.hero{padding:28px 22px}.intro-body,.survey-shell,.report-body{padding:20px 16px}.identity{grid-template-columns:1fr}.choices{grid-template-columns:1fr}.question{padding:18px 14px}.question-title{font-size:1.28rem}.choice{font-size:1.05rem;min-height:64px}.radar-wrap,.report-grid{grid-template-columns:1fr}.score-row{grid-template-columns:86px 1fr 24px}.report-hero{padding:28px 20px}}
+  </style>
+</head>
+<body>
+  <main id="intro" class="page"><section class="shell">
+    <header class="hero"><span class="brand">行为风格与兴趣发展AI助理 · 演示版</span><h1>校本行为风格观察</h1><p>认识自己在学习、合作与任务中的常见做法，找到更适合自己的学习与发展方法。没有标准答案，请选择最接近你平时表现的一项。</p><div class="facts"><span>24道学校情境题</span><span>约6—8分钟</span><span>完成后查看个人报告</span><span>活动编号：ACT-BS-2026-001</span></div></header>
+    <div class="intro-body">
+      <div class="identity">
+        <label>学生姓名<input id="studentName" name="bs_name_2026" placeholder="请输入姓名" autocomplete="off" autocapitalize="off" spellcheck="false"></label>
+        <label>学号或代号<input id="studentCode" name="bs_code_2026" placeholder="请输入学号或代号" autocomplete="off" autocapitalize="off" spellcheck="false"></label>
+        <label>班级<input id="className" name="bs_class_2026" placeholder="例如：初二A班" autocomplete="off" autocapitalize="off" spellcheck="false"></label>
+      </div>
+      <label class="consent"><input id="consent" type="checkbox"><span>我已了解：本问卷用于教育观察、自我认识与辅导参考，不作为心理诊断、能力鉴定或固定性格标签。</span></label>
+      <p id="introMessage" class="message hidden"></p>
+      <button id="beginButton" class="primary">开始填写</button>
+      <p class="notice">每名学生最多填写2次，以最新一次有效作答作为当前分析样本。系统仅收集完成教育目的所需的资料。</p>
+    </div>
+  </section></main>
+
+  <main id="survey" class="page hidden"><section class="shell survey-shell">
+    <header class="survey-head"><h1>校本行为风格观察</h1><p id="identityLine"></p><p class="activity-id">活动编号：ACT-BS-2026-001</p><div class="progress"><i id="progressBar"></i></div><div id="progressText" class="progress-text">0/24</div></header>
+    <form id="questions"></form>
+    <p id="submitMessage" class="message hidden"></p>
+    <div class="submit-wrap"><button id="submitButton" class="primary" disabled>还需完成24题</button></div>
+    <p class="boundary">请按照真实、经常出现的做法作答。结果用于认识行为倾向，不代表好坏、能力高低或固定性格。</p>
+  </section></main>
+
+  <main id="report" class="page hidden"><article class="shell report">
+    <header class="report-hero"><span class="brand">学生个人反馈报告</span><h1>你的行为风格观察</h1><div id="reportMeta" class="report-meta"></div></header>
+    <div class="report-body">
+      <section class="type-card"><small>本次行为风格</small><h2 id="typeName"></h2><p id="summary"></p><p id="typicalBehavior"></p><div class="radar-wrap"><canvas id="radar" width="560" height="480" aria-label="四维行为风格雷达图"></canvas><div id="scoreList" class="score-list"></div></div></section>
+      <div class="report-grid"><section class="report-card"><h3>你的优势资源</h3><p id="strengths"></p></section><section class="report-card"><h3>对当前学习的帮助</h3><p id="learningHelp"></p></section><section class="report-card"><h3>合作与表达提醒</h3><p id="collaborationTip"></p></section><section class="report-card"><h3>可以继续练习</h3><p id="possibleChallenge"></p></section></div>
+      <section class="action-card"><h3>本周行动</h3><p id="weeklyAction"></p></section>
+      <p id="boundary" class="final-note"></p>
+      <button class="primary finish" onclick="location.reload()">完成</button>
+    </div>
+  </article></main>
+
+  <script>
+    "use strict";
+    const API_URL = "https://script.google.com/macros/s/AKfycbz4NDgCUkRpdSL09j8QtGl4TU3uXv6148o7mRB8DP9KjCZw4FQG-1SUlv_LCZcoGzoK/exec";
+    const ACTIVITY_ID = "ACT-BS-2026-001";
+    const state = { activity:null, questions:[], answers:{}, startedAt:"" };
+    const $ = id => document.getElementById(id);
+    const show = id => $(id).classList.remove("hidden");
+    const hide = id => $(id).classList.add("hidden");
+    const esc = value => String(value ?? "").replace(/[&<>'"]/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[ch]));
+    const identity = () => ({studentName:$("studentName").value.trim(),studentCode:$("studentCode").value.trim(),className:$("className").value.trim()});
+
+    function message(id,text){$(id).textContent=text;show(id)}
+    function jsonp(params){
+      return new Promise((resolve,reject)=>{
+        const callback="bs_cb_"+Date.now()+"_"+Math.random().toString(36).slice(2);
+        const script=document.createElement("script");
+        const timer=setTimeout(()=>finish(new Error("连接超时，请稍后再试")),15000);
+        function finish(value){clearTimeout(timer);delete window[callback];script.remove();value instanceof Error?reject(value):resolve(value)}
+        window[callback]=finish;script.onerror=()=>finish(new Error("暂时无法连接问卷服务"));
+        script.src=API_URL+"?"+new URLSearchParams({...params,callback});document.body.appendChild(script);
+      });
+    }
+
+    async function loadBootstrap(){
+      if(API_URL.startsWith("PASTE_")) return {success:false,message:"页面尚未连接Apps Script接口"};
+      return jsonp({action:"bootstrap",activityId:ACTIVITY_ID});
+    }
+
+    function renderQuestions(){
+      const groups=[];state.questions.forEach(q=>{if(!groups.includes(q.contextGroup))groups.push(q.contextGroup)});
+      $("questions").innerHTML=state.questions.map(q=>{
+        const tone=groups.indexOf(q.contextGroup)%5;
+        return `<fieldset class="question tone-${tone}"><div class="question-title"><b class="number">${q.orderNo}</b><span>${esc(q.questionText)}</span></div><div class="choices">${q.options.map(o=>`<label class="choice"><input type="radio" name="${esc(q.questionId)}" value="${esc(o.optionCode)}"><span>${esc(o.optionText)}</span></label>`).join("")}</div></fieldset>`;
+      }).join("");
+    }
+
+    function updateProgress(){
+      const done=Object.keys(state.answers).length,total=state.questions.length;
+      $("progressBar").style.width=(total?done/total*100:0)+"%";$("progressText").textContent=done+"/"+total;
+      $("submitButton").disabled=done!==total;$("submitButton").textContent=done===total?"提交并查看个人报告":"还需完成"+(total-done)+"题";
+    }
+
+    $("questions").addEventListener("change",event=>{if(event.target.matches('input[type="radio"]')){state.answers[event.target.name]=event.target.value;updateProgress()}});
+
+    $("beginButton").addEventListener("click",async()=>{
+      hide("introMessage");const person=identity();
+      if(!person.studentName||!person.studentCode||!person.className)return message("introMessage","请完整填写姓名、学号或代号及班级");
+      if(!$("consent").checked)return message("introMessage","请先确认已经了解问卷用途与说明");
+      $("beginButton").disabled=true;$("beginButton").textContent="正在读取问卷……";
+      try{
+        const boot=await loadBootstrap();if(!boot.success)throw new Error(boot.message||"暂时无法读取问卷");
+        const status=await jsonp({action:"status",activityId:ACTIVITY_ID,...person});if(!status.success||!status.canSubmit)throw new Error(status.message||"本活动目前无法填写");
+        if(boot.questionCount!==24||boot.questions.some(q=>q.options.length!==4))throw new Error("题库资料不完整，请联系负责老师");
+        state.activity=boot.activity;state.questions=boot.questions;state.startedAt=new Date().toISOString();renderQuestions();updateProgress();
+        $("identityLine").textContent=person.studentName+" · "+person.className;hide("intro");show("survey");scrollTo(0,0);
+      }catch(err){message("introMessage",err.message||"暂时无法开始填写")}finally{$("beginButton").disabled=false;$("beginButton").textContent="开始填写"}
+    });
+
+    $("submitButton").addEventListener("click",async event=>{
+      event.preventDefault();hide("submitMessage");if(Object.keys(state.answers).length!==state.questions.length)return;
+      $("submitButton").disabled=true;$("submitButton").textContent="正在保存并生成报告……";
+      try{
+        const response=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},body:new URLSearchParams({action:"submit",activityId:ACTIVITY_ID,...identity(),startedAt:state.startedAt,answers:JSON.stringify(state.answers)})}).then(r=>r.json());
+        if(!response.success)throw new Error(response.message||"提交失败");renderReport(response.report);hide("survey");show("report");scrollTo(0,0);
+      }catch(err){message("submitMessage",err.message||"提交失败，请稍后再试");$("submitButton").disabled=false;$("submitButton").textContent="重新提交"}
+    });
+
+    function renderReport(report){
+      $("reportMeta").textContent=report.studentName+" · "+report.className+" · "+report.testDate+" · 活动编号："+report.activityId;
+      ["typeName","summary","typicalBehavior","strengths","learningHelp","collaborationTip","possibleChallenge","weeklyAction","boundary"].forEach(key=>$(key).textContent=report[key]||"");
+      const labels=Object.keys(report.scores),values=labels.map(label=>Number(report.scores[label])),scaleMax=Math.max(10,...values);
+      $("scoreList").innerHTML=labels.map(label=>`<div class="score-row"><span>${esc(label)}</span><span class="score-bar"><i style="width:${Number(report.scores[label])/scaleMax*100}%"></i></span><b>${Number(report.scores[label])}</b></div>`).join("");
+      drawRadar($("radar"),values,scaleMax);
+    }
+
+    function drawRadar(canvas,values,max){
+      const ctx=canvas.getContext("2d"),w=canvas.width,h=canvas.height,cx=w/2,cy=h/2+5,r=150,labels=["行动推动","沟通影响","稳定支持","规则分析"];
+      ctx.clearRect(0,0,w,h);ctx.font='700 23px "Microsoft YaHei"';ctx.textAlign="center";ctx.textBaseline="middle";
+      for(let level=1;level<=4;level++){ctx.beginPath();for(let i=0;i<4;i++){const a=-Math.PI/2+i*Math.PI/2,rr=r*level/4,x=cx+Math.cos(a)*rr,y=cy+Math.sin(a)*rr;i?ctx.lineTo(x,y):ctx.moveTo(x,y)}ctx.closePath();ctx.strokeStyle="#d9d1cb";ctx.lineWidth=2;ctx.stroke()}
+      for(let i=0;i<4;i++){const a=-Math.PI/2+i*Math.PI/2;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(a)*r,cy+Math.sin(a)*r);ctx.strokeStyle="#d9d1cb";ctx.stroke();const lr=r+58;ctx.fillStyle="#38454d";ctx.fillText(labels[i]+" "+values[i],cx+Math.cos(a)*lr,cy+Math.sin(a)*lr)}
+      ctx.beginPath();values.forEach((v,i)=>{const a=-Math.PI/2+i*Math.PI/2,rr=r*Math.min(v,max)/max,x=cx+Math.cos(a)*rr,y=cy+Math.sin(a)*rr;i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.closePath();ctx.fillStyle="#c95f4540";ctx.fill();ctx.strokeStyle="#b5523b";ctx.lineWidth=5;ctx.stroke();
+      values.forEach((v,i)=>{const a=-Math.PI/2+i*Math.PI/2,rr=r*Math.min(v,max)/max,x=cx+Math.cos(a)*rr,y=cy+Math.sin(a)*rr;ctx.beginPath();ctx.arc(x,y,7,0,Math.PI*2);ctx.fillStyle="#fff";ctx.fill();ctx.strokeStyle="#b5523b";ctx.lineWidth=4;ctx.stroke()});
+    }
+  </script>
+</body>
+</html>
