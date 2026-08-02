@@ -8,7 +8,7 @@
     :root{--ink:#263238;--muted:#65736f;--paper:#fffdf8;--cream:#fff5e8;--coral:#cf654b;--gold:#e6a72c;--blue:#4d83a8;--green:#4f9078;--line:#ead8c8}
     *{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#f8e5d6,#e3f1ec);color:var(--ink);font-family:"Noto Sans SC","Microsoft YaHei",sans-serif;font-size:18px;line-height:1.65}
     main{max-width:1180px;margin:28px auto;padding:0 18px 60px}.hero,.panel{background:rgba(255,253,248,.96);border:1px solid var(--line);border-radius:28px;box-shadow:0 18px 45px rgba(83,61,45,.1)}
-    .hero{padding:34px;background:linear-gradient(135deg,#a94e3c,#d97b56 60%,#e7a158);color:#fff}.eyebrow{font-weight:800;letter-spacing:.08em}.hero h1{font-size:clamp(34px,5vw,58px);line-height:1.1;margin:12px 0}.hero p{margin:0;max-width:800px}.query{display:grid;grid-template-columns:1fr 1fr auto;gap:14px;margin-top:28px}.query input,.query button{border:0;border-radius:16px;padding:16px 18px;font:inherit}.query input{background:#fff;color:var(--ink)}.query button{background:#ffe1a0;color:#67351f;font-weight:900;cursor:pointer}.notice{margin-top:14px;min-height:28px}
+    .hero{padding:34px;background:linear-gradient(135deg,#a94e3c,#d97b56 60%,#e7a158);color:#fff}.eyebrow{font-weight:800;letter-spacing:.08em}.hero h1{font-size:clamp(34px,5vw,58px);line-height:1.1;margin:12px 0}.hero p{margin:0;max-width:800px}.query{display:grid;grid-template-columns:1fr auto;gap:14px;margin-top:28px}.query input,.query button{border:0;border-radius:16px;padding:16px 18px;font:inherit}.query input{background:#fff;color:var(--ink)}.query button{background:#ffe1a0;color:#67351f;font-weight:900;cursor:pointer}.notice{margin-top:14px;min-height:28px}
     #report{display:none}.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:22px 0}.card,.panel{padding:24px}.card{border-radius:22px;color:#fff}.card:nth-child(1){background:var(--coral)}.card:nth-child(2){background:var(--green)}.card:nth-child(3){background:var(--blue)}.card:nth-child(4){background:var(--gold);color:#4f3610}.num{display:block;font-size:38px;font-weight:950;line-height:1.2}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.panel h2{margin:0 0 14px;font-size:27px}.panel h3{margin:18px 0 6px}.radar-wrap{display:grid;place-items:center}.radar{width:min(100%,430px);height:auto}.bars{display:grid;gap:13px}.barline{display:grid;grid-template-columns:130px 1fr 74px;gap:12px;align-items:center}.track{height:18px;background:#eee5dc;border-radius:99px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,var(--coral),var(--gold));border-radius:99px}.tag{display:inline-block;padding:6px 12px;border-radius:999px;background:#edf5f2;color:#316a59;font-weight:800}.list{padding-left:1.3em}.list li{margin:8px 0}.boundary{border-left:8px solid var(--green);background:#eef6f2}.actions{margin-top:20px;text-align:right}.actions button{padding:12px 18px;border:1px solid var(--line);background:#fff;border-radius:14px;font:inherit;font-weight:800;cursor:pointer}
     @media(max-width:760px){body{font-size:17px}.hero{padding:25px 20px}.query,.summary,.grid2{grid-template-columns:1fr}.summary{grid-template-columns:1fr 1fr}.barline{grid-template-columns:105px 1fr 56px}.panel{padding:20px}}
     @media print{body{background:#fff}main{margin:0;max-width:none}.query,.notice,.actions{display:none}.hero,.panel{box-shadow:none;break-inside:avoid}}
@@ -22,7 +22,6 @@
     <p>依据每名学生最新一次完整且有效的作答，了解班级行为资源、学习倾向与合作差异，并转化为可执行的两周支持方案。</p>
     <form class="query" id="queryForm">
       <input id="className" autocomplete="off" placeholder="班级，例如：初二A班" required>
-      <input id="accessKey" type="password" autocomplete="new-password" placeholder="教师访问码" required>
       <button type="submit">读取班级分析</button>
     </form>
     <div class="notice" id="notice"></div>
@@ -49,9 +48,9 @@ const dims=['行动推动','沟通影响','稳定支持','规则分析'];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 document.getElementById('queryForm').addEventListener('submit',async e=>{
   e.preventDefault(); const notice=document.getElementById('notice'); notice.textContent='正在读取真实班级数据，请稍候……';
-  const body=new URLSearchParams({action:'classReport',className:document.getElementById('className').value,accessKey:document.getElementById('accessKey').value});
+  const body=new URLSearchParams({action:'classReport',className:document.getElementById('className').value});
   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),45000);
-  try{const res=await fetch(API,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body,signal:controller.signal});const data=await res.json();if(!data.success)throw new Error(data.message||'读取失败');render(data.report);notice.textContent='资料读取完成。';document.getElementById('accessKey').value='';}
+  try{const res=await fetch(API,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body,signal:controller.signal});const data=await res.json();if(!data.success)throw new Error(data.message||'读取失败');render(data.report);notice.textContent='资料读取完成。';}
   catch(err){notice.textContent=err.name==='AbortError'?'连接超时，请稍后再试':err.message;document.getElementById('report').style.display='none';}
   finally{clearTimeout(timer)}
 });
