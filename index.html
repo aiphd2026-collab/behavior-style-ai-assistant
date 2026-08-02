@@ -126,7 +126,10 @@
       $("submitButton").disabled=true;$("submitButton").textContent="正在保存并生成报告……";
       try{
         const response=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},body:new URLSearchParams({action:"submit",activityId:ACTIVITY_ID,...identity(),startedAt:state.startedAt,answers:JSON.stringify(state.answers)})}).then(r=>r.json());
-        if(!response.success)throw new Error(response.message||"提交失败");renderReport(response.report);hide("survey");show("report");scrollTo(0,0);
+        if(!response.success)throw new Error(response.message||"提交失败");
+        const report=response.report||response.studentReport||(response.data&&response.data.report);
+        if(!report||!report.studentName)throw new Error("作答可能已经保存，但个人报告暂时无法读取。请勿重复提交，并请联系负责老师检查部署版本。");
+        renderReport(report);hide("survey");show("report");scrollTo(0,0);
       }catch(err){message("submitMessage",err.message||"提交失败，请稍后再试");$("submitButton").disabled=false;$("submitButton").textContent="重新提交"}
     });
 
